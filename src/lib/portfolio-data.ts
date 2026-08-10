@@ -26,8 +26,8 @@ export const files: PortfolioFile[] = [
       {
         t: "chips",
         items: [
-          { label: "linkedin.com/in/ewanjohndennis", href: "https://linkedin.com/in/ewanjohndennis" },
-          { label: "github.com/ewanjohndennis", href: "https://github.com/ewanjohndennis" },
+          { label: "linkedin.com/in/ewanjohndennis", href: "https://www.linkedin.com/in/ewanjohndennis" },
+          { label: "github.com/ewanjohndennis", href: "https://www.github.com/ewanjohndennis" },
         ],
       },
       { t: "h2", text: "Currently" },
@@ -319,13 +319,13 @@ export const files: PortfolioFile[] = [
           },
           {
             label: "LinkedIn",
-            value: "linkedin.com/in/ewanjohndennis",
+            value: "www.linkedin.com/in/ewanjohndennis",
             href: "https://linkedin.com/in/ewanjohndennis",
           },
           {
             label: "GitHub",
-            value: "github.com/ewanjohndennis",
-            href: "https://github.com/ewanjohndennis",
+            value: "www.github.com/ewanjohndennis",
+            href: "https://www.github.com/ewanjohndennis",
           },
           { label: "Phone", value: "+91 7994687722" },
           { label: "Location", value: "Kochi, Kerala" },

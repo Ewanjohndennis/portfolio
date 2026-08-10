@@ -46,7 +46,7 @@ function Index() {
             />
           ))}
         </div>
-        <span className="min-w-0 truncate font-mono text-[11px] tracking-[0.04em] text-muted">
+        <span className="min-w-0 truncate font-mono text-[11px] tracking-[0.04em] text-muted-2">
           ewan@portfolio ~/{file.name}
         </span>
         <div className="ml-auto flex shrink-0 items-center rounded-full border border-line-strong p-0.5">
@@ -55,7 +55,7 @@ function Index() {
               key={m}
               onClick={() => setMode(m)}
               className={`rounded-full px-3 py-1 font-mono text-[10px] uppercase tracking-[0.15em] transition-colors ${
-                mode === m ? "bg-ink text-background" : "text-muted hover:text-muted-2"
+                mode === m ? "bg-ink text-background" : "text-muted-2 hover:text-ink"
               }`}
             >
               {m}
@@ -67,7 +67,7 @@ function Index() {
       {/* Sidebar (desktop) */}
       <nav className="fixed bottom-0 left-0 top-12 z-20 hidden w-60 flex-col border-r border-line bg-panel md:flex">
         <div className="px-3 py-4">
-          <p className="px-2 pb-3 font-mono text-[10px] uppercase tracking-[0.15em] text-muted">
+          <p className="px-2 pb-3 font-mono text-[10px] uppercase tracking-[0.15em] text-muted-2">
             Explorer
           </p>
           {files.map((f) => (
@@ -90,14 +90,18 @@ function Index() {
         </div>
         <div className="mt-auto border-t border-line px-5 py-4">
           <a
-            href="https://github.com/ewanjohndennis"
+            href="https://www.github.com/ewanjohndennis"
             target="_blank"
             rel="noreferrer noopener"
             className="block font-mono text-[11px] text-muted-2 hover:text-ink"
           >
             github.com/ewanjohndennis
           </a>
-          <p className="mt-1.5 font-mono text-[10px] uppercase tracking-[0.15em] text-muted">
+          <a href="https://drive.google.com/file/d/1ZnW_kKNsgfD9N3d7aRYel6CuNnBXyL7P/view?usp=sharing" target="_blank" rel="noreferrer noopener"
+   className="mt-2 block font-mono text-[11px] text-muted-2 hover:text-ink">
+  resume.pdf
+</a>
+          <p className="mt-1.5 font-mono text-[10px] uppercase tracking-[0.15em] text-muted-2">
             Kochi, Kerala
           </p>
         </div>
@@ -125,7 +129,7 @@ function Index() {
       </main>
 
       {/* Status bar */}
-      <footer className="fixed inset-x-0 bottom-0 z-30 flex h-[22px] items-center gap-4 border-t border-line bg-panel px-4 font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
+      <footer className="fixed inset-x-0 bottom-0 z-30 flex h-[22px] items-center gap-4 border-t border-line bg-panel px-4 font-mono text-[10px] uppercase tracking-[0.12em] text-muted-2">
         <span>UTF-8</span>
         <span>Markdown</span>
         <span className="ml-auto">{source.split("\n").length} lines</span>

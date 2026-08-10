@@ -66,7 +66,7 @@ export function BlockList({ blocks }: { blocks: Block[] }) {
           <div key={i} className="mt-8">
             <h3 className="text-[17px] font-medium text-ink">{b.text}</h3>
             {b.meta && (
-              <p className="mt-1 font-mono text-[11px] tracking-[0.04em] text-muted">{b.meta}</p>
+              <p className="mt-1 font-mono text-[11px] tracking-[0.04em] text-muted-2">{b.meta}</p>
             )}
           </div>,
         );
@@ -121,7 +121,7 @@ export function BlockList({ blocks }: { blocks: Block[] }) {
                 key={j}
                 className="grid grid-cols-[minmax(0,1fr)] gap-1 py-3 sm:grid-cols-[130px_minmax(0,1fr)] sm:gap-4"
               >
-                <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted">
+                <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted-2">
                   {r.label}
                 </span>
                 {r.href ? (
@@ -144,7 +144,7 @@ export function BlockList({ blocks }: { blocks: Block[] }) {
       case "skill":
         out.push(
           <div key={i} className="mt-8">
-            <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted">
+            <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted-2">
               {b.label}
             </p>
             <div className="mt-3 flex flex-wrap gap-2">
