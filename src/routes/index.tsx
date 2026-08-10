@@ -26,9 +26,10 @@ export const Route = createFileRoute("/")({
 const dots = ["#3A3A3A", "#2E2E2E", "#242424"];
 
 function Index() {
-  const [active, setActive] = useState(files[0].name);
+  const [active, setActive] = useState(files[0]!.name);
   const [mode, setMode] = useState<"preview" | "code">("preview");
-  const file = files.find((f) => f.name === active) ?? files[0];
+  const file = files.find((f) => f.name === active) ?? files[0]!;
+
   const source = toMarkdown(file.blocks);
 
   return (
