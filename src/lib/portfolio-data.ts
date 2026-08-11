@@ -6,7 +6,7 @@ export type Block =
   | { t: "p"; text: string }
   | { t: "ul"; items: string[] }
   | { t: "chips"; items: { label: string; href?: string }[] }
-  | { t: "cards"; items: { title: string; stat: string }[] }
+  | { t: "cards"; items: { title: string; stat: string; desc?: string }[] }
   | { t: "rows"; items: { label: string; value: string; href?: string }[] }
   | { t: "skill"; label: string; items: string[] }
   | { t: "hr" };
@@ -45,17 +45,20 @@ export const files: PortfolioFile[] = [
   t: "cards",
   items: [
     {
-      title: "RTIIS — Real-Time Industry Insight & Strategic Intelligence System",
-      stat: "Multi-agent market intelligence platform — parallel agents, FAISS RAG, PyTorch LSTM forecasting. Data-collection latency cut by up to 3x. · Python · Groq · FAISS · PyTorch · MongoDB",
-    },
-    {
-      title: "SentinelAI — AI-Enhanced DevOps Assistant",
-      stat: "AI reasoning and safety layer for autonomous DevOps actions — 0.6 confidence threshold, 120s cooldown. · FastAPI · Groq LLaMA-3.3 · Prometheus · Docker",
-    },
-    {
-      title: "Huddle — Real-Time Campus Collaboration Platform",
-      stat: "Real-time study session finder with sub-100ms Firestore sync. 2nd Prize at Techsprint (GDGC MEC), ~40 teams. · React · Firebase · Vercel",
-    },
+  title: "RTIIS — Real-Time Industry Insight & Strategic Intelligence System",
+  desc: "Multi-agent market intelligence platform — parallel agents, FAISS RAG, PyTorch LSTM forecasting. Data-collection latency cut by up to 3x.",
+  stat: "Python · Groq · FAISS · PyTorch · MongoDB",
+},
+{
+  title: "SentinelAI — AI-Enhanced DevOps Assistant",
+  desc: "AI reasoning and safety layer for autonomous DevOps actions — 0.6 confidence threshold, 120s cooldown.",
+  stat: "FastAPI · Groq LLaMA-3.3 · Prometheus · Docker",
+},
+{
+  title: "Huddle — Real-Time Campus Collaboration Platform",
+  desc: "Real-time study session finder with sub-100ms Firestore sync. 2nd Prize at Techsprint (GDGC MEC), ~40 teams.",
+  stat: "React · Firebase · Vercel",
+},
   ],
 },
     ],
