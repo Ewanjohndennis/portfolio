@@ -40,17 +40,6 @@ export const files: PortfolioFile[] = [
         t: "p",
         text: "**Precision@50 improved from 0.240 to 0.740** on a 30,000-page starter dataset — 37 correct picks in the top 50 vs 12 for the rule-based baseline.",
       },
-      { t: "h2", text: "What I work with" },
-      {
-        t: "ul",
-        items: [
-          "AI/ML: Transformer Architecture, Agentic Workflows, Tool Calling, Embedding Models, RAG, Multi-Agent Systems, LLM Integration, Context Engineering, FAISS Vector Database, Vector Embeddings, PyTorch, LSTM Forecasting, NLP, Fine-Tuning, Model Evaluation, MLOps, Data Preprocessing, scikit-learn, XGBoost, DuckDB",
-          "Providers & SDKs: Groq, HuggingFace Inference API, OpenRouter, Azure OpenAI, Anthropic SDK",
-          "Backend: Python, Node.js, Express.js, Spring Boot, REST API, PostgreSQL, MongoDB, Docker, FastAPI",
-          "Frontend: JavaScript (ES6+), TypeScript, React.js, Next.js, Tailwind CSS, Firebase",
-          "DevOps/Cloud: Git, CI/CD, Google Cloud Run, Vercel, Streamlit Cloud, HuggingFace Spaces",
-        ],
-      },
       { t: "h2", text: "Selected Work" },
       {
         t: "cards",
