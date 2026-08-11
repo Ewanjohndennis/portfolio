@@ -102,17 +102,24 @@ export function BlockList({ blocks }: { blocks: Block[] }) {
         );
         break;
       case "cards":
-        out.push(
-          <div key={i} className="mt-5 grid gap-3">
-            {b.items.map((c, j) => (
-              <div key={j} className="border border-line bg-panel p-4">
-                <h3 className="text-[15px] font-medium leading-snug text-ink">{c.title}</h3>
-                <p className="mt-2 font-mono text-[11px] leading-[1.6] text-muted-2">{c.stat}</p>
-              </div>
-            ))}
-          </div>,
-        );
-        break;
+  out.push(
+    <div key={i} className="mt-6 flex flex-col gap-3">
+      {b.items.map((card, j) => (
+        <div key={j} className="rounded border border-line p-4">
+          <p className="text-[15px] font-medium text-ink">{card.title}</p>
+          {card.desc && (
+            <p className="mt-2 font-mono text-[12px] leading-relaxed text-muted-2">
+              {card.desc}
+            </p>
+          )}
+          <p className="mt-2 font-mono text-[11px] tracking-wide text-muted-2 opacity-70">
+            {card.stat}
+          </p>
+        </div>
+      ))}
+    </div>
+  );
+  break;
       case "rows":
         out.push(
           <div key={i} className="mt-5 divide-y divide-line border-y border-line">
