@@ -41,23 +41,23 @@ export const files: PortfolioFile[] = [
         text: "**Precision@50 improved from 0.240 to 0.740** on a 30,000-page starter dataset — 37 correct picks in the top 50 vs 12 for the rule-based baseline.",
       },
       { t: "h2", text: "Selected Work" },
-      {
-        t: "cards",
-        items: [
-          {
-            title: "RTIIS — Real-Time Industry Insight & Strategic Intelligence System",
-            stat: "Data-collection latency cut by up to 3x via three parallel agents",
-          },
-          {
-            title: "SentinelAI — AI-Enhanced DevOps Assistant",
-            stat: "Safety layer with 0.6 confidence threshold and 120-second cooldown",
-          },
-          {
-            title: "Huddle — Real-Time Campus Collaboration Platform",
-            stat: "2nd Prize at Techsprint (GDGC MEC), from ~40 teams",
-          },
-        ],
-      },
+{
+  t: "cards",
+  items: [
+    {
+      title: "RTIIS — Real-Time Industry Insight & Strategic Intelligence System",
+      stat: "Multi-agent market intelligence platform — parallel agents, FAISS RAG, PyTorch LSTM forecasting. Data-collection latency cut by up to 3x. · Python · Groq · FAISS · PyTorch · MongoDB",
+    },
+    {
+      title: "SentinelAI — AI-Enhanced DevOps Assistant",
+      stat: "AI reasoning and safety layer for autonomous DevOps actions — 0.6 confidence threshold, 120s cooldown. · FastAPI · Groq LLaMA-3.3 · Prometheus · Docker",
+    },
+    {
+      title: "Huddle — Real-Time Campus Collaboration Platform",
+      stat: "Real-time study session finder with sub-100ms Firestore sync. 2nd Prize at Techsprint (GDGC MEC), ~40 teams. · React · Firebase · Vercel",
+    },
+  ],
+},
     ],
   },
   {
