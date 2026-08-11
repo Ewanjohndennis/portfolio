@@ -28,7 +28,7 @@ export const files: PortfolioFile[] = [
         items: [
           { label: "linkedin.com/in/ewanjohndennis", href: "https://www.linkedin.com/in/ewanjohndennis" },
           { label: "github.com/ewanjohndennis", href: "https://www.github.com/ewanjohndennis" },
-          { label: "Resume", href: "https://drive.google.com/file/d/1ZnW_kKNsgfD9N3d7aRYel6CuNnBXyL7P/view?usp=sharing" },
+          { label: "Resume", href: "/newresume.pdf" },
         ],
       },
       { t: "h2", text: "Currently" },
