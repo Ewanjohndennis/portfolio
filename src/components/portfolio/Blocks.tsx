@@ -20,7 +20,7 @@ function Rich({ text }: { text: string }) {
 
 function Chip({ label, href }: { label: string; href?: string }) {
   const cls =
-    "inline-flex items-center rounded-full border border-line-strong px-3 py-1.5 font-mono text-[11px] leading-none text-muted-2 transition-colors hover:border-ink hover:text-ink";
+  "inline-flex items-center rounded-full border border-line-strong px-4 py-2 font-mono text-[12px] leading-none text-ink transition-colors hover:border-ink hover:text-ink";
   return href ? (
     <a href={href} target="_blank" rel="noreferrer noopener" className={cls}>
       {label}
@@ -30,7 +30,13 @@ function Chip({ label, href }: { label: string; href?: string }) {
   );
 }
 
-export function BlockList({ blocks }: { blocks: Block[] }) {
+export function BlockList({
+  blocks,
+  onNavigate,
+}: {
+  blocks: Block[];
+  onNavigate?: (file: string) => void;
+}) {
   const out: ReactNode[] = [];
   blocks.forEach((b, i) => {
     switch (b.t) {
@@ -107,6 +113,9 @@ export function BlockList({ blocks }: { blocks: Block[] }) {
             {b.items.map((c, j) => (
               <div key={j} className="border border-line bg-panel p-4">
                 <h3 className="text-[15px] font-medium leading-snug text-ink">{c.title}</h3>
+                {c.desc && (
+                  <p className="mt-2 text-[13px] leading-[1.6] text-muted-2">{c.desc}</p>
+                )}
                 <p className="mt-2 font-mono text-[11px] leading-[1.6] text-muted-2">{c.stat}</p>
               </div>
             ))}
@@ -157,6 +166,18 @@ export function BlockList({ blocks }: { blocks: Block[] }) {
                 </span>
               ))}
             </div>
+          </div>,
+        );
+        break;
+      case "link":
+        out.push(
+          <div key={i} className="mt-5">
+            <button
+              onClick={() => onNavigate?.(b.href)}
+              className="font-mono text-[11px] tracking-[0.04em] text-muted-2 underline decoration-line-strong underline-offset-4 transition-colors hover:text-ink hover:decoration-ink"
+            >
+              {b.label}
+            </button>
           </div>,
         );
         break;

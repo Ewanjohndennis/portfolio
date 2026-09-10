@@ -6,15 +6,16 @@ export type Block =
   | { t: "p"; text: string }
   | { t: "ul"; items: string[] }
   | { t: "chips"; items: { label: string; href?: string }[] }
-  | { t: "cards"; items: { title: string; stat: string }[] }
+  | { t: "cards"; items: { title: string; stat: string; desc?: string }[] }
   | { t: "rows"; items: { label: string; value: string; href?: string }[] }
   | { t: "skill"; label: string; items: string[] }
+  | { t: "link"; label: string; href: string }
   | { t: "hr" };
 
 export type PortfolioFile = { name: string; blocks: Block[] };
 
 export const SUMMARY =
-  "Computer Science Engineering student with hands-on experience building agentic AI systems, ML pipelines, and data-intensive backend systems. Shipped a production multi-agent market intelligence platform during my Infosys Springboard internship and currently building a content opportunity scoring model at FlyRank AI against a 79M-row data warehouse. Work well independently, iterate quickly, and care about systems that hold up outside controlled environments.";
+  "Computer Science Engineering student with hands-on experience building agentic AI systems, ML pipelines, and data-intensive backend systems. Shipped a production multi-agent market intelligence platform during my Infosys Springboard internship, built a content decay scoring model at FlyRank AI against a 175K-page warehouse, and contributed to national-level hackathons including Kavach 2024. Work well independently, iterate quickly, and care about systems that hold up outside controlled environments.";
 
 export const files: PortfolioFile[] = [
   {
@@ -28,45 +29,56 @@ export const files: PortfolioFile[] = [
         items: [
           { label: "linkedin.com/in/ewanjohndennis", href: "https://www.linkedin.com/in/ewanjohndennis" },
           { label: "github.com/ewanjohndennis", href: "https://www.github.com/ewanjohndennis" },
-          { label: "Resume", href: "https://drive.google.com/file/d/1ZnW_kKNsgfD9N3d7aRYel6CuNnBXyL7P/view?usp=sharing" },
+          { label: "Resume", href: "/newresume.pdf" },
         ],
       },
       { t: "h2", text: "Currently" },
       {
         t: "p",
-        text: "**Machine Learning Intern at FlyRank AI** (Jul 2026 – Present, Remote) — building a content refresh prioritization model across a 519K-item content warehouse with ~79M daily performance rows.",
+        text: "3rd-year B.Tech Computer Science Engineering student at Model Engineering College, Kochi. Actively looking for AI/ML engineering and SDE internship opportunities.",
       },
-      {
-        t: "p",
-        text: "**Precision@50 improved from 0.240 to 0.740** on a 30,000-page starter dataset — 37 correct picks in the top 50 vs 12 for the rule-based baseline.",
-      },
-      { t: "h2", text: "What I work with" },
-      {
-        t: "ul",
-        items: [
-          "AI/ML: Transformer Architecture, Agentic Workflows, Tool Calling, Embedding Models, RAG, Multi-Agent Systems, LLM Integration, Context Engineering, FAISS Vector Database, Vector Embeddings, PyTorch, LSTM Forecasting, NLP, Fine-Tuning, Model Evaluation, MLOps, Data Preprocessing, scikit-learn, XGBoost, DuckDB",
-          "Providers & SDKs: Groq, HuggingFace Inference API, OpenRouter, Azure OpenAI, Anthropic SDK",
-          "Backend: Python, Node.js, Express.js, Spring Boot, REST API, PostgreSQL, MongoDB, Docker, FastAPI",
-          "Frontend: JavaScript (ES6+), TypeScript, React.js, Next.js, Tailwind CSS, Firebase",
-          "DevOps/Cloud: Git, CI/CD, Google Cloud Run, Vercel, Streamlit Cloud, HuggingFace Spaces",
-        ],
-      },
+      { t: "link", label: "Read full experience →", href: "experience.md" },
       { t: "h2", text: "Selected Work" },
       {
         t: "cards",
         items: [
           {
             title: "RTIIS — Real-Time Industry Insight & Strategic Intelligence System",
-            stat: "Data-collection latency cut by up to 3x via three parallel agents",
+            desc: "Multi-agent market intelligence platform — parallel agents, FAISS RAG, PyTorch LSTM forecasting. Data-collection latency cut by up to 3x.",
+            stat: "Python · Groq · FAISS · PyTorch · MongoDB",
           },
           {
-            title: "SentinelAI — AI-Enhanced DevOps Assistant",
-            stat: "Safety layer with 0.6 confidence threshold and 120-second cooldown",
+            title: "Kavach — AI Chargeback Decisioning System",
+            desc: "Solo build for Razorpay AI Buildathon. XGBoost + SHAP + EV-based routing to AUTO_CONTEST, MANUAL_REVIEW, or AUTO_ACCEPT. Evidence-grounded representment drafts, no LLM hallucination.",
+            stat: "XGBoost · SHAP · FastAPI · SQLite",
+          },
+          {
+            title: "TrainCLI — End-to-End ML Training CLI",
+            desc: "PyPI-published. Trains scikit-learn and XGBoost models from a CSV in one command. Ships with an MCP server exposing training and inference as agent-callable tools.",
+            stat: "Python · scikit-learn · XGBoost · MCP",
           },
           {
             title: "Huddle — Real-Time Campus Collaboration Platform",
-            stat: "2nd Prize at Techsprint (GDGC MEC), from ~40 teams",
+            desc: "Real-time study session finder with sub-100ms Firestore sync. 2nd Prize at Techsprint (GDGC MEC), ~40 teams.",
+            stat: "React · Firebase · Vercel",
           },
+        ],
+      },
+      { t: "link", label: "View all projects →", href: "projects.md" },
+      { t: "h2", text: "Technical Focus" },
+      {
+        t: "p",
+        text: "Python · LightGBM · scikit-learn · PyTorch · FastAPI · RAG · Multi-Agent Systems · React · Firebase · Docker",
+      },
+      { t: "link", label: "View full skills →", href: "skills.md" },
+      { t: "h2", text: "Contact" },
+      {
+        t: "rows",
+        items: [
+          { label: "Email", value: "ewandennis2006@gmail.com", href: "mailto:ewandennis2006@gmail.com" },
+          { label: "LinkedIn", value: "linkedin.com/in/ewanjohndennis", href: "https://www.linkedin.com/in/ewanjohndennis" },
+          { label: "GitHub", value: "github.com/ewanjohndennis", href: "https://www.github.com/ewanjohndennis" },
+          { label: "Status", value: "Open to AI/ML Engineer and SDE internship opportunities" },
         ],
       },
     ],
@@ -75,17 +87,17 @@ export const files: PortfolioFile[] = [
     name: "experience.md",
     blocks: [
       { t: "h2", text: "Experience" },
-      { t: "h3", text: "FlyRank AI", meta: "Machine Learning Intern · Jul 2026 – Present · Remote" },
+      { t: "h3", text: "FlyRank AI", meta: "Machine Learning Intern · Jul 2026 – Aug 2026 · Remote" },
       {
         t: "ul",
         items: [
-          "Building a content refresh prioritization model (Applied Search Intelligence track) that ranks which web pages a reviewer should look at first, across a 519K-item content warehouse with ~79M daily performance rows.",
-          "Benchmarked a learned random forest model against FlyRank's existing rule-based system: Precision@50 improved from 0.240 to 0.740 on a 30,000-page starter dataset — 37 correct picks in the top 50 vs 12 for the baseline.",
-          "Identified search visibility consistency (days_with_impressions) as the top predictive feature, ahead of content age or word count. Applied client-holdout validation to ensure the model generalizes to unseen clients, not just unseen pages.",
-          "Designing a future-window label: using 90 days of prior signals to predict content decline over the next 30 days, replacing the current proxy label.",
+          "Built a content refresh prioritization model (Applied Search Intelligence, Lane 2) ranking decay risk across 175,205 pages from FlyRank's search analytics warehouse, scored end-to-end with a 3-tier actionable output queue.",
+          "Trained LightGBM and Random Forest classifiers on a future-window label (prior-period signals predicting 30-day impression decline); LightGBM achieved ROC-AUC 0.973 and PR-AUC 0.9997 under strict client-grouped 5-fold cross-validation, beating the rule baseline's ROC-AUC of 0.903.",
+          "Enforced GroupKFold splits by client_hash_id to prevent domain-authority memorization; naive random splits inflated ROC-AUC by 0.008, confirming the grouped approach as the honest zero-shot evaluation.",
+          "Delivered a calibrated action playbook: IMMEDIATE_REFRESH (24%), SCHEDULED_UPDATE (21%), MONITOR (55%) — with reason codes and no-go automation rules for live publishing. Stack: Python, scikit-learn, LightGBM, DuckDB, pandas, Hugging Face datasets.",
         ],
       },
-      { t: "p", text: "**Stack:** Python, scikit-learn, DuckDB, pandas, Hugging Face datasets" },
+      { t: "p", text: "**Stack:** Python, scikit-learn, LightGBM, DuckDB, pandas, Hugging Face datasets" },
       { t: "hr" },
       {
         t: "h3",
@@ -101,11 +113,12 @@ export const files: PortfolioFile[] = [
           "Shipped a role-based Streamlit UI with MongoDB Atlas persistence, Gmail SMTP delivery, and PDF reporting via ReportLab. Generated 20+ intelligence reports in production.",
         ],
       },
+      { t: "p", text: "**Stack:** Python, ThreadPoolExecutor, FAISS, PyTorch, Groq, MongoDB Atlas, Streamlit, ReportLab" },
       { t: "hr" },
-      { t: "h3", text: "FOSSMEC", meta: "Content Lead" },
+      { t: "h3", text: "FOSSMEC", meta: "Content Lead · 2024 – Present" },
       {
         t: "p",
-        text: "Content Lead at the Free and Open Source Software community at Model Engineering College. Involved in planning and promoting technical events and organising activities around open source and technology.",
+        text: "Content Lead at the Free and Open Source Software community at Model Engineering College. Planning and promoting technical events and organising activities around open source and technology.",
       },
     ],
   },
@@ -135,20 +148,21 @@ export const files: PortfolioFile[] = [
         ],
       },
       { t: "hr" },
-      { t: "h3", text: "SentinelAI — AI-Enhanced DevOps Assistant", meta: "2026" },
+      { t: "h3", text: "Kavach — AI Chargeback Decisioning System", meta: "Razorpay AI Buildathon · 2026" },
       {
         t: "ul",
         items: [
-          "Built the AI reasoning engine and safety validation layer for a 4-person DevOps assistant. The safety layer uses a 0.6 confidence threshold and 120-second cooldown before executing infrastructure actions, preventing unsafe autonomous operations.",
-          "Powered by Groq's LLaMA-3.3-70b-versatile via FastAPI, with Prometheus for system monitoring and Docker for containerisation. Submitted to Project Jam hackathon (June 2026).",
+          "Built an end-to-end chargeback decisioning system for Visa Reason Code 10.4 disputes as a solo entry. An XGBoost classifier estimates P(win) per dispute; a deterministic policy layer routes to AUTO_CONTEST, MANUAL_REVIEW, or AUTO_ACCEPT based on expected financial value (EV = P(win) × amount − (1 − P(win)) × contest fee).",
+          "Used SHAP tree explainability to surface the strongest contributing features per prediction, kept strictly separate from representment evidence. Generated structured, evidence-grounded representment drafts for AUTO_CONTEST cases — all factual claims bound to supplied merchant telemetry, no LLM hallucination.",
+          "Exposed a FastAPI webhook API with SQLite persistence, a terminal operator interface for manual-review cases, and a held-out financial evaluation reporting net recovery and ROI against a contest-everything baseline.",
         ],
       },
       {
         t: "chips",
         items: [
           {
-            label: "github.com/AlvinGeorge-AG/AI-Enhanced-DevOps-Assistant",
-            href: "https://github.com/AlvinGeorge-AG/AI-Enhanced-DevOps-Assistant",
+            label: "github.com/Ewanjohndennis/Kavach",
+            href: "https://github.com/Ewanjohndennis/Kavach",
           },
         ],
       },
@@ -218,6 +232,7 @@ export const files: PortfolioFile[] = [
           "Data Preprocessing",
           "scikit-learn",
           "XGBoost",
+          "LightGBM",
           "DuckDB",
         ],
       },
@@ -288,22 +303,6 @@ export const files: PortfolioFile[] = [
         text: "Vidyodaya School, Thevakkal",
         meta: "Senior Secondary (Class 12) · 93% · CBSE · 2022 to 2024",
       },
-      { t: "h2", text: "Certifications" },
-      {
-        t: "rows",
-        items: [
-          {
-            label: "Anthropic",
-            value: "AI Fluency: Framework & Foundations — Feb 2026",
-          },
-          { label: "Google Cloud", value: "Introduction to Generative AI — Oct 2025" },
-          { label: "IBM", value: "Artificial Intelligence Fundamentals — Jun 2025" },
-          {
-            label: "Postman",
-            value: "Postman API Fundamentals Student Expert — May 2025",
-          },
-        ],
-      },
     ],
   },
   {
@@ -320,16 +319,17 @@ export const files: PortfolioFile[] = [
           },
           {
             label: "LinkedIn",
-            value: "www.linkedin.com/in/ewanjohndennis",
+            value: "linkedin.com/in/ewanjohndennis",
             href: "https://linkedin.com/in/ewanjohndennis",
           },
           {
             label: "GitHub",
-            value: "www.github.com/ewanjohndennis",
+            value: "github.com/ewanjohndennis",
             href: "https://www.github.com/ewanjohndennis",
           },
           { label: "Phone", value: "+91 7994687722" },
           { label: "Location", value: "Kochi, Kerala" },
+          { label: "Status", value: "Open to AI/ML Engineer and SDE internship opportunities" },
         ],
       },
     ],
@@ -369,6 +369,9 @@ export function toMarkdown(blocks: Block[]): string {
         break;
       case "skill":
         lines.push(`**${b.label.toUpperCase()}**`, b.items.join(" · "), "");
+        break;
+      case "link":
+        lines.push(`[${b.label}](${b.href})`, "");
         break;
       case "hr":
         lines.push("---", "");

@@ -25,10 +25,12 @@ export const Route = createFileRoute("/")({
 
 const dots = ["#3A3A3A", "#2E2E2E", "#242424"];
 
+
 function Index() {
   const [active, setActive] = useState(files[0]!.name);
   const [mode, setMode] = useState<"preview" | "code">("preview");
   const file = files.find((f) => f.name === active) ?? files[0]!;
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const source = toMarkdown(file.blocks);
 
@@ -88,43 +90,45 @@ function Index() {
             </button>
           ))}
         </div>
-        <div className="mt-auto border-t border-line px-5 py-4">
-          <a
-            href="https://www.github.com/ewanjohndennis"
-            target="_blank"
-            rel="noreferrer noopener"
-            className="block font-mono text-[11px] text-muted-2 hover:text-ink"
-          >
-            github.com/ewanjohndennis
-          </a>
-          <a href="https://drive.google.com/file/d/1ZnW_kKNsgfD9N3d7aRYel6CuNnBXyL7P/view?usp=sharing" target="_blank" rel="noreferrer noopener"
-   className="mt-2 block font-mono text-[11px] text-muted-2 hover:text-ink">
-  resume.pdf
-</a>
-          <p className="mt-1.5 font-mono text-[10px] uppercase tracking-[0.15em] text-muted-2">
-            Kochi, Kerala
-          </p>
-        </div>
       </nav>
 
       {/* Tab bar (mobile) */}
-      <nav className="fixed inset-x-0 top-12 z-20 flex overflow-x-auto border-b border-line bg-panel md:hidden">
-        {files.map((f) => (
-          <button
-            key={f.name}
-            onClick={() => setActive(f.name)}
-            className={`shrink-0 border-r border-line px-4 py-2.5 font-mono text-[11px] transition-colors ${
-              active === f.name ? "bg-accent text-ink" : "text-muted-2"
-            }`}
-          >
-            {f.name}
-          </button>
-        ))}
-      </nav>
+      {/* Mobile nav */}
+<nav className="fixed inset-x-0 top-12 z-20 flex items-center justify-between border-b border-line bg-panel px-4 py-2.5 md:hidden">
+  <span className="font-mono text-[11px] text-muted-2">{active}</span>
+  <button
+    onClick={() => setDrawerOpen((v) => !v)}
+    className="font-mono text-[13px] text-muted-2 hover:text-ink transition-colors"
+  >
+    {drawerOpen ? "✕" : "☰"}
+  </button>
+</nav>
+
+{/* Drawer */}
+{drawerOpen && (
+  <div className="fixed inset-x-0 top-[88px] z-20 border-b border-line bg-panel px-3 py-3 md:hidden">
+    {files.map((f) => (
+      <button
+        key={f.name}
+        onClick={() => { setActive(f.name); setDrawerOpen(false); }}
+        className={`flex w-full items-center gap-2.5 px-2 py-2 text-left font-mono text-[12px] transition-colors ${
+          active === f.name ? "text-ink" : "text-muted-2 hover:text-ink"
+        }`}
+      >
+        <span
+          className={`h-2 w-2 shrink-0 border ${
+            active === f.name ? "border-ink bg-ink" : "border-line-strong"
+          }`}
+        />
+        {f.name}
+      </button>
+    ))}
+  </div>
+)}
 
       <main className="px-5 pb-24 pt-28 md:pl-60 md:pt-12">
         <div className="mx-auto max-w-[740px] py-10">
-          {mode === "preview" ? <BlockList blocks={file.blocks} /> : <CodeView source={source} />}
+          {mode === "preview" ? <BlockList blocks={file.blocks} onNavigate={(name) => setActive(name)} /> : <CodeView source={source} />}
         </div>
       </main>
 
