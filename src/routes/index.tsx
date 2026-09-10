@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { files, toMarkdown } from "@/lib/portfolio-data";
 import { BlockList, CodeView } from "@/components/portfolio/Blocks";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -31,9 +32,11 @@ function Index() {
   const [mode, setMode] = useState<"preview" | "code">("preview");
   const file = files.find((f) => f.name === active) ?? files[0]!;
   const [drawerOpen, setDrawerOpen] = useState(false);
-
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, [active]);
   const source = toMarkdown(file.blocks);
-
+  
   return (
     <div className="min-h-screen bg-background font-sans">
       {/* Topbar */}

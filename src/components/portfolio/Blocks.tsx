@@ -20,13 +20,24 @@ function Rich({ text }: { text: string }) {
 
 function Chip({ label, href }: { label: string; href?: string }) {
   const cls =
-  "inline-flex items-center rounded-full border border-line-strong px-4 py-2 font-mono text-[12px] leading-none text-ink transition-colors hover:border-ink hover:text-ink";
-  return href ? (
-    <a href={href} target="_blank" rel="noreferrer noopener" className={cls}>
+    "inline-flex items-center rounded-full border border-line-strong px-4 py-2 font-mono text-[12px] leading-none text-ink transition-colors hover:border-ink hover:text-ink";
+
+  // Check if link points to a static file (e.g. PDF in /public)
+  const isStaticFile = href?.endsWith(".pdf") || href?.startsWith("/");
+
+  if (!href) return <span className={cls}>{label}</span>;
+
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer noopener"
+      // Force direct browser download or direct tab opening for files
+      download={href.endsWith(".pdf") ? true : undefined}
+      className={cls}
+    >
       {label}
     </a>
-  ) : (
-    <span className={cls}>{label}</span>
   );
 }
 
