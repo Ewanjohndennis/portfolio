@@ -15,7 +15,7 @@ export type Block =
 export type PortfolioFile = { name: string; blocks: Block[] };
 
 export const SUMMARY =
-  "Computer Science Engineering student with hands-on experience building agentic AI systems, ML pipelines, and data-intensive backend systems. Shipped a production multi-agent market intelligence platform during my Infosys Springboard internship, built a content decay scoring model at FlyRank AI against a 175K-page warehouse, and contributed to national-level hackathons including Kavach 2024. Work well independently, iterate quickly, and care about systems that hold up outside controlled environments.";
+  "Computer Science Engineering student with hands-on experience building agentic AI systems, ML pipelines, and data-intensive backend systems. Shipped a production multi-agent market intelligence platform during my Infosys Springboard internship and built a content decay scoring model at FlyRank AI against a 175K-page warehouse. Work well independently, iterate quickly, and care about systems that hold up outside controlled environments.";
 
 export const files: PortfolioFile[] = [
   {
