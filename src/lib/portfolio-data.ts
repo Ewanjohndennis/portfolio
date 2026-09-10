@@ -75,7 +75,7 @@ export const files: PortfolioFile[] = [
       {
         t: "rows",
         items: [
-          { label: "Email", value: "ewandennis2006@gmail.com", href: "mailto:ewandennis2006@gmail.com" },
+          { label: "Email", value: "ewanjohndennis@gmail.com", href: "mailto:ewanjohndennis@gmail.com" },
           { label: "LinkedIn", value: "linkedin.com/in/ewanjohndennis", href: "https://www.linkedin.com/in/ewanjohndennis" },
           { label: "GitHub", value: "github.com/ewanjohndennis", href: "https://www.github.com/ewanjohndennis" },
           { label: "Status", value: "Open to AI/ML Engineer and SDE internship opportunities" },

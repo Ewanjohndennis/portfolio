@@ -1,44 +1,92 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useState, useEffect } from "react";
+import { createFileRoute, useNavigate, useSearch } from "@tanstack/react-router";
+import { useState, useEffect, useRef } from "react";
 import { files, toMarkdown } from "@/lib/portfolio-data";
 import { BlockList, CodeView } from "@/components/portfolio/Blocks";
+import { z } from "zod";
 
+const searchSchema = z.object({
+  file: z.string().optional(),
+});
 
 export const Route = createFileRoute("/")({
+  validateSearch: searchSchema,
   head: () => ({
-    meta: [
-      { title: "Ewan John Dennis — AI/ML Engineer & Software Developer" },
-      {
-        name: "description",
-        content:
-          "Portfolio of Ewan John Dennis, AI/ML Engineer and Software Developer in Kochi, Kerala — agentic AI systems, ML pipelines, and data-intensive backends.",
-      },
-      { property: "og:title", content: "Ewan John Dennis — AI/ML Engineer & Software Developer" },
-      {
-        property: "og:description",
-        content:
-          "Agentic AI systems, ML pipelines, and data-intensive backend systems. Projects: RTIIS, SentinelAI, TrainCLI, Huddle.",
-      },
-    ],
-  }),
+  meta: [
+    { title: "Ewan John Dennis — AI/ML Engineer & Software Developer" },
+    {
+      name: "description",
+      content:
+        "Portfolio of Ewan John Dennis, AI/ML Engineer and Software Developer in Kochi, Kerala — agentic AI systems, ML pipelines, and data-intensive backends.",
+    },
+    { property: "og:title", content: "Ewan John Dennis — AI/ML Engineer & Software Developer" },
+    {
+      property: "og:description",
+      content:
+        "3rd-year CS student building AI/ML systems and agentic workflows. Projects: RTIIS, Kavach, TrainCLI, Huddle.",
+    },
+    { property: "og:url", content: "https://ewanjohndennis.vercel.app" },
+    { property: "og:type", content: "website" },
+    { property: "og:image", content: "https://ewanjohndennis.vercel.app/og.png" },
+    { property: "og:image:width", content: "1200" },
+    { property: "og:image:height", content: "630" },
+    { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:title", content: "Ewan John Dennis — AI/ML Engineer & Software Developer" },
+    {
+      name: "twitter:description",
+      content: "3rd-year CS student building AI/ML systems and agentic workflows. Projects: RTIIS, Kavach, TrainCLI, Huddle.",
+    },
+    { name: "twitter:image", content: "https://ewanjohndennis.vercel.app/og.png" },
+  ],
+}),
   component: Index,
 });
 
 const dots = ["#3A3A3A", "#2E2E2E", "#242424"];
 
-
 function Index() {
-  const [active, setActive] = useState(files[0]!.name);
+  const search = useSearch({ from: "/" });
+  const navigate = useNavigate({ from: "/" });
+
+  const validFile =
+    files.find((f) => f.name === search.file)?.name ?? files[0]!.name;
+
+  const [active, setActiveState] = useState(validFile);
   const [mode, setMode] = useState<"preview" | "code">("preview");
-  const file = files.find((f) => f.name === active) ?? files[0]!;
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [contentKey, setContentKey] = useState(0);
+
+  const file = files.find((f) => f.name === active) ?? files[0]!;
+  const source = toMarkdown(file.blocks);
+
+  function setActive(name: string) {
+    setActiveState(name);
+    setContentKey((k) => k + 1);
+    navigate({ search: { file: name }, replace: true });
+  }
+
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }, [active]);
-  const source = toMarkdown(file.blocks);
-  
+
   return (
     <div className="min-h-screen bg-background font-sans">
+      <style>{`
+        @keyframes fadeSlideIn {
+          from { opacity: 0; transform: translateY(6px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes drawerSlide {
+          from { opacity: 0; transform: translateY(-6px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        .content-enter {
+          animation: fadeSlideIn 0.18s ease forwards;
+        }
+        .drawer-enter {
+          animation: drawerSlide 0.14s ease forwards;
+        }
+      `}</style>
+
       {/* Topbar */}
       <header className="fixed inset-x-0 top-0 z-30 flex h-12 items-center gap-4 border-b border-line bg-panel px-4">
         <div className="flex shrink-0 items-center gap-2">
@@ -84,7 +132,7 @@ function Index() {
               }`}
             >
               <span
-                className={`h-2.5 w-2.5 shrink-0 border ${
+                className={`h-2.5 w-2.5 shrink-0 border transition-colors ${
                   active === f.name ? "border-ink bg-ink" : "border-line-strong"
                 }`}
                 aria-hidden
@@ -95,43 +143,54 @@ function Index() {
         </div>
       </nav>
 
-      {/* Tab bar (mobile) */}
       {/* Mobile nav */}
-<nav className="fixed inset-x-0 top-12 z-20 flex items-center justify-between border-b border-line bg-panel px-4 py-2.5 md:hidden">
-  <span className="font-mono text-[11px] text-muted-2">{active}</span>
-  <button
-    onClick={() => setDrawerOpen((v) => !v)}
-    className="font-mono text-[13px] text-muted-2 hover:text-ink transition-colors"
-  >
-    {drawerOpen ? "✕" : "☰"}
-  </button>
-</nav>
+      <nav className="fixed inset-x-0 top-12 z-20 flex items-center justify-between border-b border-line bg-panel px-4 py-2.5 md:hidden">
+        <span className="font-mono text-[11px] text-muted-2">{active}</span>
+        <button
+          onClick={() => setDrawerOpen((v) => !v)}
+          className="font-mono text-[13px] text-muted-2 transition-colors hover:text-ink"
+        >
+          {drawerOpen ? "✕" : "☰"}
+        </button>
+      </nav>
 
-{/* Drawer */}
-{drawerOpen && (
-  <div className="fixed inset-x-0 top-[88px] z-20 border-b border-line bg-panel px-3 py-3 md:hidden">
-    {files.map((f) => (
-      <button
-        key={f.name}
-        onClick={() => { setActive(f.name); setDrawerOpen(false); }}
-        className={`flex w-full items-center gap-2.5 px-2 py-2 text-left font-mono text-[12px] transition-colors ${
-          active === f.name ? "text-ink" : "text-muted-2 hover:text-ink"
-        }`}
-      >
-        <span
-          className={`h-2 w-2 shrink-0 border ${
-            active === f.name ? "border-ink bg-ink" : "border-line-strong"
-          }`}
-        />
-        {f.name}
-      </button>
-    ))}
-  </div>
-)}
+      {/* Drawer */}
+      {drawerOpen && (
+        <div className="drawer-enter fixed inset-x-0 top-[88px] z-20 border-b border-line bg-panel px-3 py-3 md:hidden">
+          {files.map((f) => (
+            <button
+              key={f.name}
+              onClick={() => {
+                setActive(f.name);
+                setDrawerOpen(false);
+              }}
+              className={`flex w-full items-center gap-2.5 px-2 py-2 text-left font-mono text-[12px] transition-colors ${
+                active === f.name ? "text-ink" : "text-muted-2 hover:text-ink"
+              }`}
+            >
+              <span
+                className={`h-2 w-2 shrink-0 border ${
+                  active === f.name ? "border-ink bg-ink" : "border-line-strong"
+                }`}
+              />
+              {f.name}
+            </button>
+          ))}
+        </div>
+      )}
 
-      <main className="px-5 pb-24 pt-28 md:pl-60 md:pt-12">
+      <main className="px-5 pb-24 pt-24 md:pl-60 md:pt-12">
         <div className="mx-auto max-w-[740px] py-10">
-          {mode === "preview" ? <BlockList blocks={file.blocks} onNavigate={(name) => setActive(name)} /> : <CodeView source={source} />}
+          <div key={contentKey} className="content-enter">
+            {mode === "preview" ? (
+              <BlockList
+                blocks={file.blocks}
+                onNavigate={(name) => setActive(name)}
+              />
+            ) : (
+              <CodeView source={source} />
+            )}
+          </div>
         </div>
       </main>
 
