@@ -314,7 +314,7 @@ export const files: PortfolioFile[] = [
         items: [
           {
             label: "Email",
-            value: "ewandennis2006@gmail.com",
+            value: "ewanjohndennis@gmail.com",
             href: "mailto:ewandennis2006@gmail.com",
           },
           {
